@@ -1,0 +1,92 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "654be5b7-fad0-44a5-8c83-f01fa28a4291",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "composers": {
+      "name": "composers",
+      "schema": "",
+      "columns": {
+        "c_id": {
+          "name": "c_id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "works": {
+      "name": "works",
+      "schema": "",
+      "columns": {
+        "w_id": {
+          "name": "w_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "c_id": {
+          "name": "c_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imslp_id": {
+          "name": "imslp_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "works_c_id_composers_c_id_fk": {
+          "name": "works_c_id_composers_c_id_fk",
+          "tableFrom": "works",
+          "tableTo": "composers",
+          "columnsFrom": [
+            "c_id"
+          ],
+          "columnsTo": [
+            "c_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
